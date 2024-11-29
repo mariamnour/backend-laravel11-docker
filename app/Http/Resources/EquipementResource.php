@@ -21,6 +21,7 @@ class EquipementResource extends JsonResource
             'quantite_disponible' => $this->quantite_disponible,
             'etat' => $this->etat,
             'client' => new ClientResource($this->whenLoaded('client')),
+            'image_path' => $this->image_path ? asset('storage/' . $this->image_path) : null,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

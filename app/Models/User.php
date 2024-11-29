@@ -6,7 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use ApiPlatform\Metadata\ApiResource;
 
+/**
+ * @ApiResource
+ */
+#[ApiResource(
+    paginationItemsPerPage: 10,
+)]
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
