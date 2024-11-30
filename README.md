@@ -23,8 +23,8 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 1. **Cloner le dépôt :**
 
    ```bash
-   git clone https://github.com/mariamnour/crud-nextjs.git
-   cd crud-nextjs
+   git clone https://github.com/mariamnour/backend-laravel11-docker.git
+   cd backend-laravel11-docker
    ```
 
 2. **Copier le fichier d'environnement :**
