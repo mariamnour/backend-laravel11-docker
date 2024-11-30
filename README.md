@@ -1,66 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laravel Sail Docker Project
 
-## About Laravel
+Ce projet est une application Laravel configurée pour être exécutée avec Docker via Laravel Sail.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prérequis
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-## Learning Laravel
+- **Docker** et **Docker Compose**  
+  [Téléchargez Docker](https://www.docker.com/products/docker-desktop/)
+- **Git**  
+  [Téléchargez Git](https://git-scm.com/)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Étapes pour démarrer le projet :
 
-## Laravel Sponsors
+1. **Cloner le dépôt :**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```bash
+   git clone https://github.com/mariamnour/crud-nextjs.git
+   cd crud-nextjs
+   ```
 
-### Premium Partners
+2. **Copier le fichier d'environnement :**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   Dupliquer le fichier `.env.example` pour créer un fichier `.env` :
 
-## Contributing
+   ```bash
+   cp .env.example .env
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Installer les dépendances :**
 
-## Code of Conduct
+   Installez Laravel Sail et les dépendances avec Composer :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   ./vendor/bin/sail composer install
+   ```
 
-## Security Vulnerabilities
+4. **Démarrer Sail pour la première fois :**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
 
-## License
+5. **Générer la clé de l'application :**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   ./vendor/bin/sail artisan key:generate
+   ```
+
+6. **Lancer les migrations (facultatif) :**
+
+   Si vous souhaitez initialiser la base de données, exécutez :
+
+   ```bash
+   ./vendor/bin/sail artisan migrate
+   ```
+
+7. **Accéder au projet :**
+
+   Une fois Sail démarré, vous pouvez accéder au projet via [http://localhost](http://localhost).
+
+---
+
+## Commandes utiles
+
+Voici quelques commandes pratiques pour travailler avec Laravel Sail :
+
+- **Démarrer les services Docker :**
+
+  ```bash
+  ./vendor/bin/sail up -d
+  ```
+
+- **Arrêter les services Docker :**
+
+  ```bash
+  ./vendor/bin/sail down
+  ```
+
+- **Exécuter des commandes Artisan :**
+
+  ```bash
+  ./vendor/bin/sail artisan [commande]
+  ```
+
+- **Installer de nouvelles dépendances avec Composer :**
+
+  ```bash
+  ./vendor/bin/sail composer require [package]
+  ```
+
+- **Accéder au terminal Docker :**
+
+  ```bash
+  ./vendor/bin/sail shell
+  ```
+
+---
+
+## Structure du projet
+
+- `app/` : Contient le code principal de l'application Laravel.
+- `database/` : Fichiers liés à la base de données (migrations, seeders, etc.).
+- `routes/` : Définitions des routes de l'application.
+- `resources/` : Vues et ressources front-end.
+
+---
+
+## Support
+
+Si vous rencontrez des problèmes, consultez la documentation officielle de Laravel : [Laravel Documentation](https://laravel.com/docs).
+
+### Installation et Configuration de TablePlus
+
+1. **Télécharger TablePlus** :
+   - Accédez au site officiel : [https://tableplus.com/](https://tableplus.com/).
+   - Téléchargez et installez la version appropriée pour votre système d'exploitation (MacOS, Windows, ou Linux).
+
+2. **Configurer une connexion à votre base de données Docker** :
+   - Ouvrez TablePlus.
+   - Cliquez sur **Créer une nouvelle connexion**.
+   - Sélectionnez **MySQL** (ou le type de base de données utilisé dans votre projet).
+   - Remplissez les champs :
+     - **Host** : `127.0.0.1`
+     - **Port** : `3306`
+     - **User** : `root`
+     - **Password** : Votre mot de passe de base de données défini dans `.env`.
+     - **Database** : Laissez vide pour voir toutes les bases de données ou spécifiez-en une.
+   - Cliquez sur **Connecter**.
+
+3. **Accéder et gérer votre base de données** :
+   - Une fois connecté, vous pouvez visualiser, éditer et gérer vos tables et données.
+
+TablePlus est un outil puissant pour interagir avec vos bases de données de manière conviviale.
