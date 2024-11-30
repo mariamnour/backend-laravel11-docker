@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use ApiPlatform\Metadata\ApiResource;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @ApiResource
@@ -16,6 +17,7 @@ use ApiPlatform\Metadata\ApiResource;
 class Client extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['nom', 'email', 'telephone'];
 

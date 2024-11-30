@@ -8,12 +8,13 @@ use App\Models\Equipement;
 use App\Models\HistoriqueEquipement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::paginate(110); // Pagination
+        $clients = Client::with(['historique.equipement'])->paginate(10); // Charge l'historique et les équipements associés
         return ClientResource::collection($clients);
     }
 
@@ -22,7 +23,11 @@ class ClientController extends Controller
         // Valider les données du client et des équipements
         $validated = $request->validate([
             'nom' => 'required|string|max:255',
-            'email' => 'required|email|unique:clients',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('clients', 'email')->whereNull('deleted_at')
+            ],
             'telephone' => 'nullable|string|max:15',
             'equipements' => 'nullable|array',
             'equipements.*.id' => 'required|exists:equipements,id', // Vérifie que chaque équipement existe
@@ -64,7 +69,7 @@ class ClientController extends Controller
         }
 
         // Retourner un ClientResource
-
+        $client->load('historique.equipement');
         // Retourner les données du client et de ses équipements
         return response()->json([
             'client' => new ClientResource($client),
