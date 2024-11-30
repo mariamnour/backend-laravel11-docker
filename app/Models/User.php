@@ -11,9 +11,11 @@ use ApiPlatform\Metadata\ApiResource;
 /**
  * @ApiResource
  */
-#[ApiResource(
-    paginationItemsPerPage: 10,
-)]
+// #[ApiResource(
+//     paginationItemsPerPage: 20,
+//     formats: ['jsonld' => ['application/ld+json'], 'json' => ['application/json'], 'form' => ['multipart/form-data']]
+
+// )]
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */

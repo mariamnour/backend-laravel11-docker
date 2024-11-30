@@ -9,9 +9,10 @@ use ApiPlatform\Metadata\ApiResource;
 /**
  * @ApiResource
  */
-#[ApiResource(
-    paginationItemsPerPage: 10,
-)]
+// #[ApiResource(
+//     paginationItemsPerPage: 10,
+//     formats: ['jsonld' => ['application/ld+json'], 'json' => ['application/json'], 'form' => ['multipart/form-data']]
+// )]
 class Client extends Model
 {
     use HasFactory;

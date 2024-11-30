@@ -21,6 +21,4 @@ Route::apiResource('equipements', EquipementController::class);
 Route::get('historique', [HistoriqueEquipementController::class, 'index'])->name('historique.index');
 Route::post('clients/{client}/equipements', [HistoriqueEquipementController::class, 'assign'])->name('historique.assign');
 Route::post('clients/{client}/equipements/recuperer', [HistoriqueEquipementController::class, 'recover'])->name('historique.recover');
-Route::get('/test', function () {
-    return response()->json(['message' => 'API fonctionne']);
-});
+Route::post('equipements/upload', [EquipementController::class, 'upload']);

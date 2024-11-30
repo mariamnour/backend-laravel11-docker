@@ -9,11 +9,11 @@ use ApiPlatform\Metadata\ApiResource;
 /**
  * @ApiResource
  */
-#[ApiResource(
-    paginationItemsPerPage: 20,
-    formats: ['jsonld' => ['application/ld+json'], 'json' => ['application/json'], 'form' => ['multipart/form-data']]
+// #[ApiResource(
+//     paginationItemsPerPage: 20,
+//     formats: ['jsonld' => ['application/ld+json'], 'json' => ['application/json'], 'form' => ['multipart/form-data']]
 
-)]
+// )]
 class Equipement extends Model
 {
     use HasFactory;
@@ -35,4 +35,5 @@ class Equipement extends Model
     {
         return $this->hasMany(HistoriqueEquipement::class);
     }
+    public $timestamps = true;
 }
