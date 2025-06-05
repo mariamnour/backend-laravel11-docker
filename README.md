@@ -140,3 +140,27 @@ Si vous rencontrez des problèmes, consultez la documentation officielle de Lara
    - Une fois connecté, vous pouvez visualiser, éditer et gérer vos tables et données.
 
 TablePlus est un outil puissant pour interagir avec vos bases de données de manière conviviale.
+
+---
+
+## Modules
+
+Ce projet prend en charge une architecture modulaire. Les modules se trouvent
+dans le dossier `app/Modules`. Chaque module peut disposer de son propre
+Service Provider et de ses routes.
+
+Exemple d'organisation :
+
+```
+app/Modules/
+  Demo/
+    Providers/
+      DemoServiceProvider.php
+    routes/
+      web.php
+```
+
+Les Service Providers placés dans `app/Modules/*/Providers` sont automatiquement
+enregistrés par l'application.
+N'oubliez pas d'exécuter `composer dump-autoload` si vous ajoutez de nouveaux
+fichiers afin que l'autoload soit mis à jour.

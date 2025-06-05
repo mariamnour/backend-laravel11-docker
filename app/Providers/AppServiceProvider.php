@@ -11,7 +11,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $modulePath = app_path('Modules');
+
+        if (is_dir($modulePath)) {
+            foreach (glob($modulePath . '/*/Providers/*.php') as $provider) {
+                $moduleName = basename(dirname($provider));
+                $providerClass = "Modules\\{$moduleName}\\Providers\\" . basename($provider, '.php');
+
+                if (class_exists($providerClass)) {
+                    $this->app->register($providerClass);
+                }
+            }
+        }
     }
 
     /**
